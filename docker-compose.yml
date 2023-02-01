@@ -7,7 +7,15 @@ services:
       - MARIADB_PASSWORD=my_cool_secret
       - MARIADB_ROOT_PASSWORD=my-secret-pw
       - MARIADB_DATABASE=wordpress
-    ports:
-      - "3306:3306"
+    # Uncomment this lines if you need comunicate with mariadb 
+    #ports:
+      #- "3306:3306"
     volumes:
       - ./mariadb-data:/var/lib/mysql
+
+  apache2:
+    image: httpd:2.4
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public-html/:/usr/local/apache2/htdocs/
